@@ -20,9 +20,9 @@ export const useAuthStore = create((set) => ({
         }
     },
     login: async (email, password) => {
-        const { data } = await api.post('/auth/login', { email, password })
-        localStorage.setItem('token', data.token)
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
+        const { data: { token }} = await api.post('/auth/login', { email, password })
+        localStorage.setItem('token', token)
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
         await useAuthStore.getState().fetchMe()
     },
     signup: async (username, email, password) => {
