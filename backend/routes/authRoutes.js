@@ -24,10 +24,6 @@ router.post('/login', async (req, res) => {
       const token = generateToken(user._id);
 
       return res.json({
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        refrigeratorId: user.refrigeratorId,
         token: token
       })
     }
